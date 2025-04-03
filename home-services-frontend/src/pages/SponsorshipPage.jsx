@@ -130,34 +130,34 @@ const SponsorshipPage = () => {
         <Navbar onShowWaitlist={() => setShowWaitlist(true)} />
 
         {/* Hero Section */}
-        <div className="relative pt-32 pb-32 overflow-hidden">
+        <div className="relative pt-20 sm:pt-32 pb-16 sm:pb-32 overflow-hidden">
           <div className="absolute inset-0 bg-[#002812] opacity-50"></div>
           <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
             <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#047857] to-[#059669] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"></div>
           </div>
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6">
               <span className="text-white">Strategic</span>{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400">
                 Partnership Program
               </span>
             </h1>
-            <p className="text-xl text-green-100/80 max-w-3xl mx-auto mb-12">
+            <p className="text-lg sm:text-xl text-green-100/80 max-w-3xl mx-auto mb-8 sm:mb-12 px-4">
               Join forces with the leading home services platform and unlock unprecedented growth opportunities.
             </p>
-            <div className="flex justify-center gap-6">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 px-4">
               <button
                 onClick={() => setShowWaitlist(true)}
-                className="px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-full hover:opacity-90 transition-all duration-300 transform hover:scale-105 group"
+                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-full hover:opacity-90 transition-all duration-300 transform hover:scale-105 group"
               >
-                <span className="flex items-center">
+                <span className="flex items-center justify-center">
                   Become a Partner
                   <ArrowRight className="h-5 w-5 ml-2 transition-transform group-hover:translate-x-1" />
                 </span>
               </button>
               <Link
                 to="/contact"
-                className="px-8 py-4 border-2 border-green-500 text-green-400 font-bold rounded-full hover:bg-green-500 hover:text-white transition-all duration-300"
+                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-green-500 text-green-400 font-bold rounded-full hover:bg-green-500 hover:text-white transition-all duration-300 text-center"
               >
                 Learn More
               </Link>
@@ -166,13 +166,13 @@ const SponsorshipPage = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="py-20 bg-[#002812]">
+        <div className="py-12 sm:py-20 bg-[#002812]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 gap-4 sm:gap-8">
               {stats.map((stat, index) => (
-                <div key={index} className="bg-[#001a0e] p-8 rounded-2xl text-center transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-green-500/10">
-                  <div className="text-4xl font-bold text-green-400 mb-2">{stat.value}</div>
-                  <div className="text-green-100">{stat.label}</div>
+                <div key={index} className="bg-[#001a0e] p-4 sm:p-8 rounded-xl sm:rounded-2xl text-center transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-green-500/10">
+                  <div className="text-2xl sm:text-4xl font-bold text-green-400 mb-1 sm:mb-2">{stat.value}</div>
+                  <div className="text-sm sm:text-base text-green-100">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -180,20 +180,20 @@ const SponsorshipPage = () => {
         </div>
 
         {/* Benefits Section */}
-        <div className="py-20">
+        <div className="py-12 sm:py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-white mb-8 sm:mb-16">
               Partnership
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 ml-2">
                 Benefits
               </span>
             </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
               {benefits.map((benefit, index) => (
-                <div key={index} className="bg-[#002812] p-8 rounded-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-green-500/10">
-                  <div className="text-green-400 mb-6">{benefit.icon}</div>
-                  <h3 className="text-xl font-bold text-white mb-4">{benefit.title}</h3>
-                  <p className="text-green-100/70">{benefit.description}</p>
+                <div key={index} className="bg-[#002812] p-6 sm:p-8 rounded-xl sm:rounded-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-green-500/10">
+                  <div className="text-green-400 mb-4 sm:mb-6">{benefit.icon}</div>
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-4">{benefit.title}</h3>
+                  <p className="text-sm sm:text-base text-green-100/70">{benefit.description}</p>
                 </div>
               ))}
             </div>
@@ -201,41 +201,41 @@ const SponsorshipPage = () => {
         </div>
 
         {/* Partnership Tiers */}
-        <div className="py-20 bg-[#002812]">
+        <div className="py-12 sm:py-20 bg-[#002812]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-white mb-8 sm:mb-16">
               Choose Your
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 ml-2">
                 Partnership Tier
               </span>
             </h2>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {sponsorshipTiers.map((tier, index) => (
-                <div key={index} className={`relative bg-[#001a0e] rounded-3xl p-8 transform transition-all duration-300 hover:scale-105 ${
+                <div key={index} className={`relative bg-[#001a0e] rounded-2xl sm:rounded-3xl p-6 sm:p-8 transform transition-all duration-300 hover:scale-105 ${
                   tier.popular ? 'border-2 border-green-500' : ''
                 }`}>
                   {tier.popular && (
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-1 rounded-full text-sm font-medium">
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium">
                       Most Popular
                     </div>
                   )}
-                  <div className="text-green-400 mb-6">{tier.icon}</div>
-                  <h3 className="text-2xl font-bold text-white mb-4">{tier.name}</h3>
-                  <div className="flex items-baseline mb-8">
-                    <span className="text-4xl font-bold text-green-400">{tier.price}</span>
-                    <span className="text-green-100/70 ml-2">{tier.duration}</span>
+                  <div className="text-green-400 mb-4 sm:mb-6">{tier.icon}</div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">{tier.name}</h3>
+                  <div className="flex items-baseline mb-6 sm:mb-8">
+                    <span className="text-3xl sm:text-4xl font-bold text-green-400">{tier.price}</span>
+                    <span className="text-sm sm:text-base text-green-100/70 ml-2">{tier.duration}</span>
                   </div>
-                  <div className="space-y-4 mb-8">
+                  <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                     {tier.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center text-green-100">
-                        <CheckCircle className="h-5 w-5 text-green-400 mr-2" />
+                      <div key={idx} className="flex items-center text-sm sm:text-base text-green-100">
+                        <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 mr-2" />
                         <span>{feature}</span>
                       </div>
                     ))}
                   </div>
                   <button
                     onClick={() => setShowWaitlist(true)}
-                    className={`w-full py-4 rounded-full font-bold transition-all duration-300 ${
+                    className={`w-full py-3 sm:py-4 rounded-full text-sm sm:text-base font-bold transition-all duration-300 ${
                       tier.popular
                         ? 'bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:opacity-90'
                         : 'border-2 border-green-500 text-green-400 hover:bg-green-500 hover:text-white'
@@ -250,18 +250,18 @@ const SponsorshipPage = () => {
         </div>
 
         {/* Success Stories */}
-        <div className="py-20">
+        <div className="py-12 sm:py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-white mb-8 sm:mb-16">
               Partner
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 ml-2">
                 Success Stories
               </span>
             </h2>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {successStories.map((story, index) => (
-                <div key={index} className="bg-[#002812] rounded-3xl overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-green-500/20">
-                  <div className="relative h-48">
+                <div key={index} className="bg-[#002812] rounded-2xl sm:rounded-3xl overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-green-500/20">
+                  <div className="relative h-40 sm:h-48">
                     <img
                       src={story.image}
                       alt={story.company}
@@ -269,10 +269,10 @@ const SponsorshipPage = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#001a0e] to-transparent"></div>
                   </div>
-                  <div className="p-8">
-                    <h3 className="text-xl font-bold text-white mb-2">{story.company}</h3>
-                    <div className="text-green-400 font-bold mb-4">{story.result}</div>
-                    <p className="text-green-100/70">{story.testimonial}</p>
+                  <div className="p-6 sm:p-8">
+                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2">{story.company}</h3>
+                    <div className="text-green-400 font-bold mb-3 sm:mb-4">{story.result}</div>
+                    <p className="text-sm sm:text-base text-green-100/70">{story.testimonial}</p>
                   </div>
                 </div>
               ))}
@@ -281,30 +281,30 @@ const SponsorshipPage = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="py-20 bg-[#002812]">
+        <div className="py-12 sm:py-20 bg-[#002812]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-[#001a0e] rounded-3xl p-12 text-center relative overflow-hidden">
+            <div className="bg-[#001a0e] rounded-2xl sm:rounded-3xl p-6 sm:p-12 text-center relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 to-emerald-500/10"></div>
               <div className="relative z-10">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">
                   Ready to
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 ml-2">
                     Transform Your Business?
                   </span>
                 </h2>
-                <p className="text-xl text-green-100/80 mb-8">
+                <p className="text-lg sm:text-xl text-green-100/80 mb-6 sm:mb-8">
                   Join our partnership program today and unlock a world of opportunities
                 </p>
-                <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
                   <button
                     onClick={() => setShowWaitlist(true)}
-                    className="px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-full hover:opacity-90 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-green-500/20"
+                    className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-full hover:opacity-90 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-green-500/20"
                   >
                     Become a Partner
                   </button>
                   <Link
                     to="/contact"
-                    className="px-8 py-4 border-2 border-green-500 text-green-400 font-bold rounded-full hover:bg-green-500 hover:text-white transition-all duration-300"
+                    className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-green-500 text-green-400 font-bold rounded-full hover:bg-green-500 hover:text-white transition-all duration-300 text-center"
                   >
                     Schedule a Call
                   </Link>
