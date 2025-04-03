@@ -143,26 +143,26 @@ const Home = () => {
       {showWaitlist && <WaitlistSection onClose={() => setShowWaitlist(false)} />}
       
       {/* Hero Section with Enhanced Design */}
-      <div className="relative min-h-[100vh] flex items-center justify-center bg-[#002812] pt-32 pb-24">
+      <div className="relative min-h-[85vh] sm:min-h-screen flex items-center justify-center bg-[#002812] pt-16 sm:pt-32 pb-12 sm:pb-24">
         {/* Animated background patterns */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNTAgMjVsNi42NCA2LjY0YTIgMiAwIDAxMCAyLjgzbC02LjY0IDYuNjQtNi42NC02LjY0YTIgMiAwIDAxMC0yLjgzTDUwIDI1em0tMjAgMGw2LjY0IDYuNjRhMiAyIDAgMDEwIDIuODNMMzAgNDEuMTFsLTYuNjQtNi42NGEyIDIgMCAwMTAtMi44M0wzMCAyNXptLTIwIDBsNi42NCA2LjY0YTIgMiAwIDAxMCAyLjgzTDEwIDQxLjExbC02LjY0LTYuNjRhMiAyIDAgMDEwLTIuODNMMTAgMjV6IiBmaWxsPSIjMDA0NzFiIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=')] opacity-10"></div>
+          <div className="fixed w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNjUgMzVsOC44NCA4Ljg0YTMgMyAwIDAxMCA0LjI0TDY1IDU2LjkyIDU2LjE2IDQ4LjA4YTMgMyAwIDAxMC00LjI0TDY1IDM1em0tMjUgMGw4Ljg0IDguODRhMyAzIDAgMDEwIDQuMjRMNDAgNTYuOTJsLTguODQtOC44NGEzIDMgMCAwMTAtNC4yNEw0MCAzNXptLTI1IDBsOC44NCA4Ljg0YTMgMyAwIDAxMCA0LjI0TDE1IDU2LjkyIDYuMTYgNDguMDhhMyAzIDAgMDEwLTQuMjRMMTUgMzV6IiBmaWxsPSIjMDA0NzFiIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=')] opacity-15 bg-repeat bg-[length:80px_80px]"></div>
         </div>
 
         {/* Main content */}
-        <div className="container mx-auto px-8 sm:px-12 relative z-10">
+        <div className="container mx-auto px-4 sm:px-8 relative z-10 w-full max-w-7xl">
           <div className="text-center max-w-5xl mx-auto">
             {/* Main heading with enhanced typography */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold mb-4 sm:mb-6 leading-tight">
-              <span className="text-white">Nurture.</span>
-              <span className="text-white mx-2 sm:mx-4">Grow.</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold mb-3 sm:mb-6 leading-tight">
+              <span className="text-white block sm:inline">Nurture.</span>
+              <span className="text-white block sm:inline">Grow.</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 block sm:inline">
                 Thrive.
               </span>
             </h1>
 
             {/* Enhanced subtitle */}
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4">
+            <p className="text-base sm:text-xl md:text-2xl text-gray-300 mb-6 sm:mb-12 max-w-3xl mx-auto leading-relaxed">
               Expert services delivered at your doorstep, with 
               <span className="text-green-400"> uncompromising quality </span>
               and
@@ -170,10 +170,10 @@ const Home = () => {
             </p>
 
             {/* CTA buttons with enhanced styling */}
-            <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 px-4">
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-6">
               <button 
                 onClick={handleShowWaitlist}
-                className="w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-5 bg-green-500 hover:bg-green-400 text-white font-bold rounded-full shadow-lg shadow-green-500/30 hover:shadow-green-500/50 transform hover:-translate-y-1 transition-all duration-300 inline-flex items-center justify-center group"
+                className="w-full sm:w-auto px-6 sm:px-12 py-3.5 sm:py-5 bg-green-500 hover:bg-green-400 text-white font-bold rounded-full shadow-lg shadow-green-500/30 hover:shadow-green-500/50 transform hover:-translate-y-1 transition-all duration-300 inline-flex items-center justify-center group"
               >
                 <span>Get Started</span>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
@@ -182,7 +182,7 @@ const Home = () => {
               </button>
               <Link 
                 to="/services"
-                className="w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-5 bg-transparent hover:bg-green-900/30 border-2 border-green-500 text-white font-bold rounded-full transform hover:-translate-y-1 transition-all duration-300 inline-flex items-center justify-center group"
+                className="w-full sm:w-auto px-6 sm:px-12 py-3.5 sm:py-5 bg-transparent hover:bg-green-900/30 border-2 border-green-500 text-white font-bold rounded-full transform hover:-translate-y-1 transition-all duration-300 inline-flex items-center justify-center group"
               >
                 <span>Our Services</span>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
@@ -192,18 +192,18 @@ const Home = () => {
             </div>
 
             {/* Trust indicators */}
-            <div className="mt-12 sm:mt-16 grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-8 max-w-3xl mx-auto px-4">
+            <div className="mt-8 sm:mt-16 grid grid-cols-3 gap-3 sm:gap-8 max-w-3xl mx-auto">
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl font-bold text-green-400 mb-2">500+</div>
-                <div className="text-gray-400 text-sm">Trusted Partners</div>
+                <div className="text-xl sm:text-3xl font-bold text-green-400 mb-1">500+</div>
+                <div className="text-gray-400 text-xs sm:text-sm">Trusted Partners</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl font-bold text-green-400 mb-2">24/7</div>
-                <div className="text-gray-400 text-sm">Support Available</div>
+                <div className="text-xl sm:text-3xl font-bold text-green-400 mb-1">24/7</div>
+                <div className="text-gray-400 text-xs sm:text-sm">Support Available</div>
               </div>
-              <div className="text-center col-span-2 sm:col-span-1">
-                <div className="text-2xl sm:text-3xl font-bold text-green-400 mb-2">98%</div>
-                <div className="text-gray-400 text-sm">Satisfaction Rate</div>
+              <div className="text-center">
+                <div className="text-xl sm:text-3xl font-bold text-green-400 mb-1">98%</div>
+                <div className="text-gray-400 text-xs sm:text-sm">Satisfaction Rate</div>
               </div>
             </div>
           </div>
