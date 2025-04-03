@@ -146,7 +146,7 @@ const Home = () => {
       <div className="relative min-h-[85vh] sm:min-h-screen flex items-center justify-center bg-[#002812] pt-16 sm:pt-32 pb-12 sm:pb-24">
         {/* Animated background patterns */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="fixed w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNjUgMzVsOC44NCA4Ljg0YTMgMyAwIDAxMCA0LjI0TDY1IDU2LjkyIDU2LjE2IDQ4LjA4YTMgMyAwIDAxMC00LjI0TDY1IDM1em0tMjUgMGw4Ljg0IDguODRhMyAzIDAgMDEwIDQuMjRMNDAgNTYuOTJsLTguODQtOC44NGEzIDMgMCAwMTAtNC4yNEw0MCAzNXptLTI1IDBsOC44NCA4Ljg0YTMgMyAwIDAxMCA0LjI0TDE1IDU2LjkyIDYuMTYgNDguMDhhMyAzIDAgMDEwLTQuMjRMMTUgMzV6IiBmaWxsPSIjMDA0NzFiIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=')] opacity-15 bg-repeat bg-[length:80px_80px]"></div>
+          <div className="fixed w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNjUgMzVsOC44NCA4Ljg0YTMgMyAwIDAxMCA0LjI0TDY1IDU2LjkyIDU2LjE2IDQ4LjA4YTMgMyAwIDAxMC00LjI0TDY1IDM1em0tMjUgMGw4Ljg0IDguODRhMyAzIDAgMDEwIDQuMjRMNDAgNTYuOTJsLTguODQtOC44NGEzIDMgMCAwMTAtNC4yNEw0MCAzNXptLTI1IDBsOC44NCA4Ljg0YTMgMyAwIDAxMCA0LjI0TDE1IDU2LjkyIDYuMTYgNDguMDhhMyAzIDAgMDEwLTQuMjRMMTUgMzV6IiBmaWxsPSIjMDA0NzFiIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=')] opacity-15 bg-repeat bg-[length:100px_100px] sm:bg-[length:80px_80px]"></div>
         </div>
 
         {/* Main content */}
