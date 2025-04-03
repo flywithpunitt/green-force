@@ -138,72 +138,71 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100">
+    <div className="min-h-screen bg-[#002812] text-gray-100">
       <Navbar onShowWaitlist={() => setShowWaitlist(true)} />
       {showWaitlist && <WaitlistSection onClose={() => setShowWaitlist(false)} />}
       
-      {/* Hero Section with Enhanced Design */}
-      <div className="relative min-h-[85vh] sm:min-h-screen flex items-center justify-center bg-[#002812] pt-16 sm:pt-32 pb-12 sm:pb-24">
-        {/* Animated background patterns */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="fixed w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNjUgMzVsOC44NCA4Ljg0YTMgMyAwIDAxMCA0LjI0TDY1IDU2LjkyIDU2LjE2IDQ4LjA4YTMgMyAwIDAxMC00LjI0TDY1IDM1em0tMjUgMGw4Ljg0IDguODRhMyAzIDAgMDEwIDQuMjRMNDAgNTYuOTJsLTguODQtOC44NGEzIDMgMCAwMTAtNC4yNEw0MCAzNXptLTI1IDBsOC44NCA4Ljg0YTMgMyAwIDAxMCA0LjI0TDE1IDU2LjkyIDYuMTYgNDguMDhhMyAzIDAgMDEwLTQuMjRMMTUgMzV6IiBmaWxsPSIjMDA0NzFiIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=')] opacity-15 bg-repeat bg-[length:100px_100px] sm:bg-[length:80px_80px]"></div>
-        </div>
+      {/* Background pattern wrapper for entire page */}
+      <div className="relative min-h-screen">
+        <div className="fixed inset-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNjUgMzVsOC44NCA4Ljg0YTMgMyAwIDAxMCA0LjI0TDY1IDU2LjkyIDU2LjE2IDQ4LjA4YTMgMyAwIDAxMC00LjI0TDY1IDM1em0tMjUgMGw4Ljg0IDguODRhMyAzIDAgMDEwIDQuMjRMNDAgNTYuOTJsLTguODQtOC44NGEzIDMgMCAwMTAtNC4yNEw0MCAzNXptLTI1IDBsOC44NCA4Ljg0YTMgMyAwIDAxMCA0LjI0TDE1IDU2LjkyIDYuMTYgNDguMDhhMyAzIDAgMDEwLTQuMjRMMTUgMzV6IiBmaWxsPSIjMDA0NzFiIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=')] opacity-15 bg-repeat bg-[length:100px_100px] sm:bg-[length:80px_80px] pointer-events-none"></div>
 
-        {/* Main content */}
-        <div className="container mx-auto px-4 sm:px-8 relative z-10 w-full max-w-7xl">
-          <div className="text-center max-w-5xl mx-auto">
-            {/* Main heading with enhanced typography */}
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold mb-3 sm:mb-6 leading-tight">
-              <span className="text-white block sm:inline">Nurture.</span>
-              <span className="text-white block sm:inline">Grow.</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 block sm:inline">
-                Thrive.
-              </span>
-            </h1>
+        {/* Hero Section */}
+        <div className="relative min-h-[85vh] sm:min-h-screen flex items-center justify-center pt-16 sm:pt-32 pb-12 sm:pb-24">
+          <div className="container mx-auto px-4 sm:px-8 relative z-10 w-full max-w-7xl">
+            <div className="text-center max-w-5xl mx-auto">
+              {/* Main heading with enhanced typography */}
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold mb-3 sm:mb-6 leading-tight">
+                <span className="text-white block sm:inline">Nurture.</span>
+                <span className="text-white block sm:inline">Grow.</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 block sm:inline">
+                  Thrive.
+                </span>
+              </h1>
 
-            {/* Enhanced subtitle */}
-            <p className="text-base sm:text-xl md:text-2xl text-gray-300 mb-6 sm:mb-12 max-w-3xl mx-auto leading-relaxed">
-              Expert services delivered at your doorstep, with 
-              <span className="text-green-400"> uncompromising quality </span>
-              and
-              <span className="text-green-400"> reliability</span>
-            </p>
+              {/* Enhanced subtitle */}
+              <p className="text-base sm:text-xl md:text-2xl text-gray-300 mb-6 sm:mb-12 max-w-3xl mx-auto leading-relaxed">
+                Expert services delivered at your doorstep, with 
+                <span className="text-green-400"> uncompromising quality </span>
+                and
+                <span className="text-green-400"> reliability</span>
+              </p>
 
-            {/* CTA buttons with enhanced styling */}
-            <div className="flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-6">
-              <button 
-                onClick={handleShowWaitlist}
-                className="w-full sm:w-auto px-6 sm:px-12 py-3.5 sm:py-5 bg-green-500 hover:bg-green-400 text-white font-bold rounded-full shadow-lg shadow-green-500/30 hover:shadow-green-500/50 transform hover:-translate-y-1 transition-all duration-300 inline-flex items-center justify-center group"
-              >
-                <span>Get Started</span>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-              </button>
-              <Link 
-                to="/services"
-                className="w-full sm:w-auto px-6 sm:px-12 py-3.5 sm:py-5 bg-transparent hover:bg-green-900/30 border-2 border-green-500 text-white font-bold rounded-full transform hover:-translate-y-1 transition-all duration-300 inline-flex items-center justify-center group"
-              >
-                <span>Our Services</span>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
-                </svg>
-              </Link>
-            </div>
-
-            {/* Trust indicators */}
-            <div className="mt-8 sm:mt-16 grid grid-cols-3 gap-3 sm:gap-8 max-w-3xl mx-auto">
-              <div className="text-center">
-                <div className="text-xl sm:text-3xl font-bold text-green-400 mb-1">500+</div>
-                <div className="text-gray-400 text-xs sm:text-sm">Trusted Partners</div>
+              {/* CTA buttons with enhanced styling */}
+              <div className="flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-6">
+                <button 
+                  onClick={handleShowWaitlist}
+                  className="w-full sm:w-auto px-6 sm:px-12 py-3.5 sm:py-5 bg-green-500 hover:bg-green-400 text-white font-bold rounded-full shadow-lg shadow-green-500/30 hover:shadow-green-500/50 transform hover:-translate-y-1 transition-all duration-300 inline-flex items-center justify-center group"
+                >
+                  <span>Get Started</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </button>
+                <Link 
+                  to="/services"
+                  className="w-full sm:w-auto px-6 sm:px-12 py-3.5 sm:py-5 bg-transparent hover:bg-green-900/30 border-2 border-green-500 text-white font-bold rounded-full transform hover:-translate-y-1 transition-all duration-300 inline-flex items-center justify-center group"
+                >
+                  <span>Our Services</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
+                  </svg>
+                </Link>
               </div>
-              <div className="text-center">
-                <div className="text-xl sm:text-3xl font-bold text-green-400 mb-1">24/7</div>
-                <div className="text-gray-400 text-xs sm:text-sm">Support Available</div>
-              </div>
-              <div className="text-center">
-                <div className="text-xl sm:text-3xl font-bold text-green-400 mb-1">98%</div>
-                <div className="text-gray-400 text-xs sm:text-sm">Satisfaction Rate</div>
+
+              {/* Trust indicators */}
+              <div className="mt-8 sm:mt-16 grid grid-cols-3 gap-3 sm:gap-8 max-w-3xl mx-auto">
+                <div className="text-center">
+                  <div className="text-xl sm:text-3xl font-bold text-green-400 mb-1">500+</div>
+                  <div className="text-gray-400 text-xs sm:text-sm">Trusted Partners</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-xl sm:text-3xl font-bold text-green-400 mb-1">24/7</div>
+                  <div className="text-gray-400 text-xs sm:text-sm">Support Available</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-xl sm:text-3xl font-bold text-green-400 mb-1">98%</div>
+                  <div className="text-gray-400 text-xs sm:text-sm">Satisfaction Rate</div>
+                </div>
               </div>
             </div>
           </div>
@@ -211,9 +210,8 @@ const Home = () => {
       </div>
 
       {/* Coming Soon Section */}
-      <div className="py-24 sm:py-32 bg-[#001a0e] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNTAgMjVsNi42NCA2LjY0YTIgMiAwIDAxMCAyLjgzbC02LjY0IDYuNjQtNi42NC02LjY0YTIgMiAwIDAxMC0yLjgzTDUwIDI1em0tMjAgMGw2LjY0IDYuNjRhMiAyIDAgMDEwIDIuODNMMzAgNDEuMTFsLTYuNjQtNi42NGEyIDIgMCAwMTAtMi44M0wzMCAyNXptLTIwIDBsNi42NCA2LjY0YTIgMiAwIDAxMCAyLjgzTDEwIDQxLjExbC02LjY0LTYuNjRhMiAyIDAgMDEwLTIuODNMMTAgMjV6IiBmaWxsPSIjMDA0NzFiIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=')] opacity-5"></div>
-        
+      <div className="py-24 sm:py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[#001a0e]/80"></div>
         <div className="container mx-auto px-8 sm:px-12 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-block px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 mb-6">
@@ -303,7 +301,8 @@ const Home = () => {
       </div>
 
       {/* Core Services Section with Hover Animation */}
-      <div className="py-24 sm:py-32 bg-[#002812] relative">
+      <div className="py-24 sm:py-32 relative">
+        <div className="absolute inset-0 bg-[#002812]/90"></div>
         <div className="container mx-auto px-8 sm:px-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">
             <span className="text-green-400">Premium Services</span>
@@ -340,7 +339,8 @@ const Home = () => {
       </div>
 
       {/* How It Works Section */}
-      <div className="py-24 sm:py-32 bg-[#002812] relative overflow-hidden">
+      <div className="py-24 sm:py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[#002812]/90"></div>
         <div className="container mx-auto px-8 sm:px-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">
             How GreenForce <span className="text-green-400">Works</span>
@@ -380,7 +380,8 @@ const Home = () => {
       </div>
 
       {/* Platform Features Section */}
-      <div className="py-24 sm:py-32 bg-[#001a0e] relative">
+      <div className="py-24 sm:py-32 relative">
+        <div className="absolute inset-0 bg-[#001a0e]/80"></div>
         <div className="container mx-auto px-8 sm:px-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">
             <span className="text-green-400">Why Choose Us</span>
@@ -405,8 +406,9 @@ const Home = () => {
       </div>
 
       {/* Emergency Services Section */}
-      <div className="py-16 bg-[#002812]">
-        <div className="container mx-auto px-8 sm:px-12">
+      <div className="py-16 relative">
+        <div className="absolute inset-0 bg-[#002812]/90"></div>
+        <div className="container mx-auto px-8 sm:px-12 relative z-10">
           <div className="bg-[#003920] rounded-3xl p-8 sm:p-12 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 to-emerald-500/10"></div>
             <div className="relative z-10">
@@ -445,8 +447,9 @@ const Home = () => {
       </div>
 
       {/* Testimonials Section */}
-      <div className="py-24 sm:py-32 bg-[#001a0e]">
-        <div className="container mx-auto px-8 sm:px-12">
+      <div className="py-24 sm:py-32 relative">
+        <div className="absolute inset-0 bg-[#001a0e]/80"></div>
+        <div className="container mx-auto px-8 sm:px-12 relative z-10">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">
             <span className="text-green-400">Customer Stories</span>
           </h2>
@@ -470,8 +473,9 @@ const Home = () => {
       </div>
 
       {/* CTA Section */}
-      <div className="py-24 sm:py-32 bg-[#002812] relative overflow-hidden">
-        <div className="container mx-auto px-8 sm:px-12">
+      <div className="py-24 sm:py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[#002812]/90"></div>
+        <div className="container mx-auto px-8 sm:px-12 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
               Ready to Transform Your Home?
