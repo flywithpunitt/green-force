@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Clock, MessageSquare, Send, CheckCircle, Loader2, AlertCircle } from 'lucide-react';
 import Navbar from '../components/Navbar';
@@ -12,9 +12,7 @@ const ContactPage = () => {
     subject: '',
     message: '',
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
   const handleChange = (e) => {
@@ -24,57 +22,47 @@ const ContactPage = () => {
       [name]: value
     }));
     // Clear error when user starts typing
-    if (error) setError('');
+    if (submitStatus === 'error') setSubmitStatus(null);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    setError('');
+    setIsSubmitting(true);
     setSubmitStatus(null);
 
     try {
-      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      const response = await fetch('http://localhost:5000/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          service_id: 'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-          template_id: 'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
-          user_id: 'YOUR_USER_ID', // Replace with your EmailJS user ID
-          template_params: {
-            to_email: 'support@greenfieldforce.com',
-            from_name: formData.name,
-            from_email: formData.email,
-            subject: formData.subject,
-            message: formData.message
-          }
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
+          source: 'contact'
         })
       });
 
       if (response.ok) {
         setSubmitStatus('success');
-        setIsSubmitted(true);
-        // Reset form
         setFormData({
           name: '',
           email: '',
           phone: '',
           subject: '',
-          message: '',
+          message: ''
         });
-        // Show success message for 3 seconds
-        setTimeout(() => setIsSubmitted(false), 3000);
       } else {
         setSubmitStatus('error');
-        throw new Error('Failed to send email');
       }
-    } catch (err) {
-      setError(err.message);
+    } catch (error) {
+      console.error('Error submitting form:', error);
       setSubmitStatus('error');
     } finally {
-      setIsLoading(false);
+      setIsSubmitting(false);
     }
   };
 
@@ -169,10 +157,10 @@ const ContactPage = () => {
             <div className="bg-[#002812] rounded-2xl p-8">
               <h2 className="text-2xl font-bold text-white mb-6">Send us a Message</h2>
               <form onSubmit={handleSubmit} className="space-y-6">
-                {error && (
+                {submitStatus === 'error' && (
                   <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg flex items-center gap-2 text-red-400">
                     <AlertCircle className="h-5 w-5" />
-                    <span>{error}</span>
+                    <span>There was an error submitting your message. Please try again later.</span>
                   </div>
                 )}
                 <div className="grid md:grid-cols-2 gap-6">
@@ -186,7 +174,7 @@ const ContactPage = () => {
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-lg bg-[#001a0e] border border-green-500/20 text-white focus:outline-none focus:border-green-500 transition-colors disabled:opacity-50"
                       required
-                      disabled={isLoading}
+                      disabled={isSubmitting}
                     />
                   </div>
                   <div>
@@ -199,7 +187,7 @@ const ContactPage = () => {
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-lg bg-[#001a0e] border border-green-500/20 text-white focus:outline-none focus:border-green-500 transition-colors disabled:opacity-50"
                       required
-                      disabled={isLoading}
+                      disabled={isSubmitting}
                     />
                   </div>
                 </div>
@@ -212,7 +200,7 @@ const ContactPage = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full px-4 py-3 rounded-lg bg-[#001a0e] border border-green-500/20 text-white focus:outline-none focus:border-green-500 transition-colors disabled:opacity-50"
-                    disabled={isLoading}
+                    disabled={isSubmitting}
                   />
                 </div>
                 <div>
@@ -225,7 +213,7 @@ const ContactPage = () => {
                     onChange={handleChange}
                     className="w-full px-4 py-3 rounded-lg bg-[#001a0e] border border-green-500/20 text-white focus:outline-none focus:border-green-500 transition-colors disabled:opacity-50"
                     required
-                    disabled={isLoading}
+                    disabled={isSubmitting}
                   />
                 </div>
                 <div>
@@ -238,20 +226,20 @@ const ContactPage = () => {
                     rows="4"
                     className="w-full px-4 py-3 rounded-lg bg-[#001a0e] border border-green-500/20 text-white focus:outline-none focus:border-green-500 transition-colors disabled:opacity-50"
                     required
-                    disabled={isLoading}
+                    disabled={isSubmitting}
                   ></textarea>
                 </div>
                 <button
                   type="submit"
-                  disabled={isLoading}
+                  disabled={isSubmitting}
                   className="w-full py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-lg hover:opacity-90 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isLoading ? (
+                  {isSubmitting ? (
                     <>
                       <Loader2 className="h-5 w-5 animate-spin" />
-                      Sending...
+                      Submitting...
                     </>
-                  ) : isSubmitted ? (
+                  ) : submitStatus === 'success' ? (
                     <>
                       <CheckCircle className="h-5 w-5" />
                       Message Sent!
@@ -263,16 +251,6 @@ const ContactPage = () => {
                     </>
                   )}
                 </button>
-                {submitStatus === 'success' && (
-                  <div className="mt-4 p-4 bg-green-500/10 border border-green-500/20 rounded-lg text-green-400">
-                    Message sent successfully! We'll get back to you soon.
-                  </div>
-                )}
-                {submitStatus === 'error' && (
-                  <div className="mt-4 p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400">
-                    There was an error sending your message. Please try again later.
-                  </div>
-                )}
               </form>
             </div>
 

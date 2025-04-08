@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const apiRoutes = require('./routes/api');
 const waitlistRoutes = require('./routes/waitlist');
 const bodyParser = require('body-parser');
 const newsletterRoutes = require('./routes/newsletter');
@@ -12,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://puneetpunia7982:jdfhekdfjghe345349@cluster0.kma37.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+mongoose.connect('mongodb://localhost:27017/home-services', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
@@ -20,6 +21,7 @@ mongoose.connect('mongodb+srv://puneetpunia7982:jdfhekdfjghe345349@cluster0.kma3
 .catch(err => console.error('MongoDB connection error:', err));
 
 // Routes
+app.use('/api', apiRoutes);
 app.use('/api/waitlist', waitlistRoutes);
 app.use('/api/newsletter', newsletterRoutes);
 
@@ -86,5 +88,5 @@ app.post('/api/newsletter/subscribe', (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 }); 

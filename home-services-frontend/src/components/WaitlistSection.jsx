@@ -7,13 +7,10 @@ const WaitlistSection = ({ onClose }) => {
     name: '',
     email: ''
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const containerRef = useRef(null);
-  const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -48,27 +45,21 @@ const WaitlistSection = ({ onClose }) => {
     setSubmitStatus(null);
 
     try {
-      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      const response = await fetch('http://localhost:5000/api/waitlist', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          service_id: 'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-          template_id: 'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
-          user_id: 'YOUR_USER_ID', // Replace with your EmailJS user ID
-          template_params: {
-            to_email: 'support@greenfieldforce.com',
-            from_email: email,
-            subject: 'New Waitlist Signup',
-            message: `New waitlist signup from: ${email}`
-          }
+          name: formData.name,
+          email: formData.email,
+          source: 'waitlist'
         })
       });
 
       if (response.ok) {
         setSubmitStatus('success');
-        setEmail('');
+        setFormData({ name: '', email: '' });
         setTimeout(() => {
           onClose();
         }, 2000);
@@ -76,8 +67,8 @@ const WaitlistSection = ({ onClose }) => {
         setSubmitStatus('error');
       }
     } catch (error) {
+      console.error('Error submitting form:', error);
       setSubmitStatus('error');
-      console.error('Error sending email:', error);
     } finally {
       setIsSubmitting(false);
     }
@@ -122,7 +113,7 @@ const WaitlistSection = ({ onClose }) => {
           </motion.h2>
           
           <AnimatePresence mode="wait">
-            {!isSubmitted ? (
+            {submitStatus !== 'success' ? (
               <motion.form 
                 key="form"
                 initial={{ opacity: 0, y: 50 }}
@@ -163,8 +154,8 @@ const WaitlistSection = ({ onClose }) => {
                     type="email"
                     id="email"
                     name="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={formData.email}
+                    onChange={handleChange}
                     required
                     className="w-full px-4 py-3 bg-[#002812] border border-green-700/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-white placeholder-green-700"
                     placeholder="your@email.com"
@@ -179,7 +170,7 @@ const WaitlistSection = ({ onClose }) => {
                   className="w-full px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-lg shadow-xl hover:shadow-2xl transform transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
-                    <span className="flex items-center">
+                    <span className="flex items-center justify-center">
                       <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -187,18 +178,13 @@ const WaitlistSection = ({ onClose }) => {
                       Submitting...
                     </span>
                   ) : (
-                    <span className="flex items-center">
+                    <span className="flex items-center justify-center">
                       <Send className="h-5 w-5 mr-2" />
                       Join Waitlist
                     </span>
                   )}
                 </motion.button>
 
-                {submitStatus === 'success' && (
-                  <div className="mt-4 p-4 bg-green-500/10 border border-green-500/20 rounded-lg text-green-400">
-                    Thank you for joining our waitlist! We'll be in touch soon.
-                  </div>
-                )}
                 {submitStatus === 'error' && (
                   <div className="mt-4 p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400">
                     There was an error submitting your email. Please try again later.
