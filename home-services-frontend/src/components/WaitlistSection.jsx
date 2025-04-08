@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { X, Send } from 'lucide-react';
 
 const WaitlistSection = ({ onClose }) => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,9 @@ const WaitlistSection = ({ onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef(null);
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -40,17 +44,42 @@ const WaitlistSection = ({ onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
+    setIsSubmitting(true);
+    setSubmitStatus(null);
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setIsSubmitted(true);
-      setFormData({ name: '', email: '' });
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          service_id: 'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+          template_id: 'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+          user_id: 'YOUR_USER_ID', // Replace with your EmailJS user ID
+          template_params: {
+            to_email: 'support@greenfieldforce.com',
+            from_email: email,
+            subject: 'New Waitlist Signup',
+            message: `New waitlist signup from: ${email}`
+          }
+        })
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setEmail('');
+        setTimeout(() => {
+          onClose();
+        }, 2000);
+      } else {
+        setSubmitStatus('error');
+      }
     } catch (error) {
-      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+      console.error('Error sending email:', error);
     } finally {
-      setIsLoading(false);
+      setIsSubmitting(false);
     }
   };
 
@@ -79,9 +108,7 @@ const WaitlistSection = ({ onClose }) => {
           onClick={onClose}
           className="absolute top-4 right-4 text-green-400 hover:text-white transition-all duration-300"
         >
-          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
+          <X className="h-8 w-8" />
         </motion.button>
         
         <div className="relative z-10">
@@ -136,8 +163,8 @@ const WaitlistSection = ({ onClose }) => {
                     type="email"
                     id="email"
                     name="email"
-                    value={formData.email}
-                    onChange={handleChange}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                     className="w-full px-4 py-3 bg-[#002812] border border-green-700/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-white placeholder-green-700"
                     placeholder="your@email.com"
@@ -148,11 +175,35 @@ const WaitlistSection = ({ onClose }) => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   type="submit"
-                  disabled={isLoading}
+                  disabled={isSubmitting}
                   className="w-full px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-lg shadow-xl hover:shadow-2xl transform transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isLoading ? 'Processing...' : 'Get Early Access'}
+                  {isSubmitting ? (
+                    <span className="flex items-center">
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Submitting...
+                    </span>
+                  ) : (
+                    <span className="flex items-center">
+                      <Send className="h-5 w-5 mr-2" />
+                      Join Waitlist
+                    </span>
+                  )}
                 </motion.button>
+
+                {submitStatus === 'success' && (
+                  <div className="mt-4 p-4 bg-green-500/10 border border-green-500/20 rounded-lg text-green-400">
+                    Thank you for joining our waitlist! We'll be in touch soon.
+                  </div>
+                )}
+                {submitStatus === 'error' && (
+                  <div className="mt-4 p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400">
+                    There was an error submitting your email. Please try again later.
+                  </div>
+                )}
 
                 <p className="text-sm text-green-300/70 text-center mt-4">
                   Join our waitlist to get exclusive updates and early access to our platform

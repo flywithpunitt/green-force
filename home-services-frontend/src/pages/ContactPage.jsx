@@ -15,9 +15,14 @@ const ContactPage = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
     // Clear error when user starts typing
     if (error) setError('');
   };
@@ -26,35 +31,48 @@ const ContactPage = () => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
+    setSubmitStatus(null);
 
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          service_id: 'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+          template_id: 'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+          user_id: 'YOUR_USER_ID', // Replace with your EmailJS user ID
+          template_params: {
+            to_email: 'support@greenfieldforce.com',
+            from_name: formData.name,
+            from_email: formData.email,
+            subject: formData.subject,
+            message: formData.message
+          }
+        })
       });
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Failed to send message. Please try again later.');
+      if (response.ok) {
+        setSubmitStatus('success');
+        setIsSubmitted(true);
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          subject: '',
+          message: '',
+        });
+        // Show success message for 3 seconds
+        setTimeout(() => setIsSubmitted(false), 3000);
+      } else {
+        setSubmitStatus('error');
+        throw new Error('Failed to send email');
       }
-
-      setIsSubmitted(true);
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: '',
-      });
-      // Show success message for 3 seconds
-      setTimeout(() => setIsSubmitted(false), 3000);
     } catch (err) {
       setError(err.message);
+      setSubmitStatus('error');
     } finally {
       setIsLoading(false);
     }
@@ -245,6 +263,16 @@ const ContactPage = () => {
                     </>
                   )}
                 </button>
+                {submitStatus === 'success' && (
+                  <div className="mt-4 p-4 bg-green-500/10 border border-green-500/20 rounded-lg text-green-400">
+                    Message sent successfully! We'll get back to you soon.
+                  </div>
+                )}
+                {submitStatus === 'error' && (
+                  <div className="mt-4 p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400">
+                    There was an error sending your message. Please try again later.
+                  </div>
+                )}
               </form>
             </div>
 
